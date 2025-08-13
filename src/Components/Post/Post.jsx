@@ -34,7 +34,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 
 
 	return (
-		<div className="bg-white dark:bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6 w-full">
+		<div className="bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6 w-full">
 
 			{/* User Info */}
 			<div className='flex justify-between items-center'>
