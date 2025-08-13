@@ -44,8 +44,8 @@ export default function MyPosts() {
 	return (
 		<div className="my-6 ">
          <div className="flex justify-center items-center text-black">
-					<h1 className="text-xl">Posts</h1>
-					<div className="w-[80%] h-[10px] shadow-2xl"></div>
+					<h1 className="text-22xl text-center">Posts</h1>
+					<div className="w-[80%] h-[10px] shadow-2xl bg-blue-500"></div>
 				 </div>
 			{loading ? (
 				<p>Loading...</p>
