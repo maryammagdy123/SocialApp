@@ -110,7 +110,7 @@ export default function Profile() {
 									defaultValue={user.name}
 									className={`w-full px-4 py-2 border rounded-lg ${isEditing
 										? "focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 text-white"
-										: "bg-gray-100 dark:bg-gray-700 cursor-not-allowed text-white"
+										: "bg-gray-100 dark:bg-gray-700 cursor-not-allowed text-black"
 										}`}
 								/>
 							</div>
@@ -126,7 +126,7 @@ export default function Profile() {
 									defaultValue={user.email}
 									className={`w-full px-4 py-2 border rounded-lg ${isEditing
 										? "focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-										: "bg-gray-100 dark:bg-gray-700 cursor-not-allowed text-white"
+										: "bg-gray-100 dark:bg-gray-700 cursor-not-allowed text-black"
 										}`}
 								/>
 							</div>
