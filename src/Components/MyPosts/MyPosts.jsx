@@ -57,7 +57,7 @@ export default function MyPosts() {
 								alt={user?.name || "User"}
 								className="w-10 h-10 rounded-full object-cover"
 							/>
-							<span className="text-gray-800 dark:text-gray-200 font-medium">
+							<span className="text-white font-medium">
 								{user?.name || "Unknown User"}
 							</span>
 						</div>
@@ -72,7 +72,7 @@ export default function MyPosts() {
 						)}
 
 						{/* Post Body */}
-						<p className="text-gray-700 dark:text-gray-300">{post.body}</p>
+						<p className="text-white">{post.body}</p>
 
 						{/* Post footer */}
 						<div className="flex items-center justify-between border-t pt-3 text-gray-500 text-sm">
