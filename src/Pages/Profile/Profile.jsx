@@ -36,7 +36,7 @@ export default function Profile() {
 		<>
 		{/*------------------------------------------------- user's profile information-------------------------------- */}
 		<div className="lg:ml-64 p-4 sm:p-6  min-h-screen  bg -white transition-all">
-			<div className="max-w-6xl mx-auto mt-18 bg-white dark:bg-gray-900 shadow-md p-4 sm:p-6 ">
+			<div className="max-w-6xl mx-auto mt-18 :bg-gray-900 shadow-md p-4 sm:p-6 ">
 
 				{/* Header */}
 				<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
