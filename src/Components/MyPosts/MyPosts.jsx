@@ -48,7 +48,7 @@ export default function MyPosts() {
 				<p>Loading...</p>
 			) : (
 				posts.map((post) => (
-					<div key={post._id} className=" bg-white dark:bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto ">
+					<div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto ">
 						{/* Post content */}
 						{/* User Info */}
 						<div className="flex items-center gap-3">
