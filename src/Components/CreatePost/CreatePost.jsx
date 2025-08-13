@@ -49,7 +49,7 @@ export default function CreatePost() {
 	return (
 		<div>
 			{/* ===== Mobile Compact View ===== */}
-			<div className="flex items-center gap-2 p-3 bg-white dark:bg-gray-900 rounded-lg shadow-md sm:hidden">
+			<div className="flex items-center gap-2 p-3 bg-gray-900 rounded-lg shadow-md sm:hidden">
 				{user && <img src={user.photo} alt="" className="w-10 h-10 rounded-full object-cover" />}
 				<input
 					type="text"
