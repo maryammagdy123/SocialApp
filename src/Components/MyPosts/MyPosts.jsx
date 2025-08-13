@@ -43,18 +43,18 @@ export default function MyPosts() {
 
 	return (
 		<div className="my-6 ">
-         <div className="flex justify-center items-center text-black">
-					<h1 className="text-22xl text-center">Posts</h1>
-					<div className="w-[80%] h-[10px] shadow-2xl bg-blue-500"></div>
+         <div className="flex flex-col justify-center  text-black my-4">
+					<h1 className="text-2xl p-2">Posts</h1>
+					<div className="w-[20%] rounded-2xl h-[10px]  bg-blue-500"></div>
 				 </div>
 			{loading ? (
 				<p>Loading...</p>
 			) : (
 				posts.map((post) => (
-					<div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto ">
+					<div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto   ">
 						{/* Post content */}
 						{/* User Info */}
-						<div className="flex items-center gap-3">
+						<div className="flex items-center gap-3 ">
 							<img
 								src={user?.photo || "https://via.placeholder.com/40"}
 								alt={user?.name || "User"}
