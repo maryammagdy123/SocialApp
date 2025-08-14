@@ -10,9 +10,10 @@ export default function MyPosts() {
 	let { user, setUser } = useContext(UserDataContext);
 
 	const USER_ID = user?._id;
+
 	let [posts, setPosts] = useState([]);
 	let [loading, setLoading] = useState(true);
-	const [openPostId, setOpenPostId] = useState(null);
+	// const [openPostId, setOpenPostId] = useState(null);
 
 	useEffect(() => {
 		getMyPosts();
@@ -33,7 +34,7 @@ export default function MyPosts() {
 				setPosts(data?.posts);
 			}
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		} finally {
 			setLoading(false);
 		}

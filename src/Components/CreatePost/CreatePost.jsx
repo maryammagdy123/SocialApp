@@ -113,7 +113,7 @@ export default function CreatePost() {
 			{/* ===== Modal (Mobile Post Form) ===== */}
 			{showModal && (
 				<div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-					<div className="bg-white dark:bg-gray-900 p-5 rounded-lg w-11/12 max-w-md">
+					<div className="bg-white dark:bg-gray-900 p-5 rounded-lg w-11/12 max-w-md ">
 						<h2 className="text-lg font-semibold mb-4 dark:text-white">Create Post</h2>
 						<form onSubmit={handleSubmit(handlePostSubmit)} className="space-y-4">
 							<textarea

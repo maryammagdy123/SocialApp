@@ -25,7 +25,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 	let { user } = useContext(UserDataContext)
 
 	let postCreator = User._id;
-	let loggedUsr = user._id;
+	let loggedUsr = user?._id;
 
 	let showPostOptions = postCreator == loggedUsr
 
@@ -93,7 +93,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 
 							<div key={index} className="flex items-start gap-3 mb-3">
 								<img
-									src={comment?.commentCreator?._id == user._id ? user.photo : Image}
+									src={comment?.commentCreator?._id == user?._id ? user?.photo : Image}
 									alt="Comment user"
 									className="w-8 h-8 rounded-full object-cover"
 								/>
@@ -110,7 +110,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 						// Last comment
 						<div className="flex items-start gap-3">
 							<img
-								src={comments[comments.length - 1]?.commentCreator?._id == user._id ? user.photo : Image}
+								src={comments[comments.length - 1]?.commentCreator?._id == user?._id ? user?.photo : Image}
 								alt="Comment user"
 								className="w-8 h-8 rounded-full object-cover"
 							/>
