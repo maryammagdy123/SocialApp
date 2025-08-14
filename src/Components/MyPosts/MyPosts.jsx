@@ -3,6 +3,7 @@ import { UserDataContext } from "../../Context/UserDataContext";
 import axios from "axios";
 import { FaRegCommentDots } from "react-icons/fa";
 import AddComment from "../AddComment/AddComment";
+import Spinner from "../Spinner/Spinner";
 
 export default function MyPosts() {
 	let { user, setUser } = useContext(UserDataContext);
@@ -51,14 +52,16 @@ export default function MyPosts() {
 						{/* Post content */}
 						{/* User Info */}
 						<div className="flex items-center gap-3 ">
-							<img
-								src={user?.photo || "https://via.placeholder.com/40"}
-								alt={user?.name || "User"}
-								className="w-10 h-10 rounded-full object-cover"
-							/>
-							<span className="text-white font-medium">
-								{user?.name || "Unknown User"}
-							</span>
+							{user ? <>
+								<img
+									src={user?.photo || "https://via.placeholder.com/40"}
+									alt={user?.name || "User"}
+									className="w-10 h-10 rounded-full object-cover"
+								/>
+								<span className="text-white font-medium">
+									{user?.name || "Unknown User"}
+								</span>
+							</> : <Spinner />}
 						</div>
 
 						{/* Post Image */}
@@ -99,7 +102,7 @@ export default function MyPosts() {
 											<img
 
 												src={
-													comment?.commentCreator?._id == USER_ID? user.photo : comment?.comments?.commentCreator?.photo
+													comment?.commentCreator?._id == USER_ID ? user.photo : comment?.comments?.commentCreator?.photo
 												}
 												alt="Comment user"
 												className="w-8 h-8 rounded-full object-cover"
