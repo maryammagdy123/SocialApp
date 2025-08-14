@@ -64,7 +64,7 @@ export default function Login() {
 	return (
 		<>
 		
-			<section className="login min-h-screen bg-indigo-500 flex flex-col justify-center items-center md:p-20 p-4 ">
+			<section className="login min-h-screen  bg-gray-900 flex flex-col justify-center items-center md:p-20 p-4 ">
 			{/* <h1 className='text-4xl text-center text-white p-4'>Linked Post</h1> */}
 				<div className="card min-h-[500px] flex flex-col lg:flex-row bg-white w-full max-w-4xl rounded-lg overflow-hidden shadow-lg  ">
 				

@@ -7,43 +7,42 @@ import { CgFeed } from "react-icons/cg";
 import { BsFillMenuAppFill } from 'react-icons/bs';
 export default function AsideBar() {
 
-	 let { setUser } = useContext(UserDataContext)
+  let { setUser } = useContext(UserDataContext)
   let logOut = useNavigate()
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   function handleLogOut() {
     localStorage.removeItem("token")
     setUser(null)
     logOut("/login")
   }
-		useEffect(() => {
-			initFlowbite();
-		}, []);
-	  function getNavLinkClasses(isActive) {
+  useEffect(() => {
+    initFlowbite();
+  }, []);
+  function getNavLinkClasses(isActive) {
     return `flex items-center p-2 rounded-lg group transition-colors duration-200 
-      ${isActive 
-        ? "bg-gray-200 text-blue-600 dark:bg-gray-700 dark:text-white" 
+      ${isActive
+        ? "bg-gray-200 text-blue-600 dark:bg-gray-700 dark:text-white"
         : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
       }`;
   }
 
   function getIconClasses(isActive) {
-    return `transition duration-75 ${
-      isActive 
-        ? "text-blue-600 dark:text-white" 
-        : "text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-    }`;
+    return `transition duration-75 ${isActive
+      ? "text-blue-600 dark:text-white"
+      : "text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+      }`;
   }
 
-return (
+  return (
     <>
-     
- 
 
-      <aside 
-        id="default-sidebar" 
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform  bg-indigo-500 shadow-2xl
+
+
+      <aside
+        id="default-sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform  bg-gray-900 shadow-2xl
           ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-          lg:translate-x-0`} 
+          lg:translate-x-0`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto border-gray-200 dark:border-gray-700">
@@ -82,7 +81,7 @@ return (
         </div>
       </aside>
 
-   
+
     </>
   );
 }

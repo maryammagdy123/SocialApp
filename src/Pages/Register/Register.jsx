@@ -9,7 +9,7 @@ export default function Register() {
 	return (
 
 		<>
-			<div className="register min-h-screen bg-indigo-500 flex  justify-center items-center md:p-30 p-4">
+			<div className="register min-h-screen  bg-gray-900 flex  justify-center items-center md:p-30 p-4">
 				<div className="card min-h-[500px] flex flex-col-reverse md:flex-row-reverse bg-white w-full max-w-4xl  rounded-lg overflow-hidden shadow-lg">
 
 

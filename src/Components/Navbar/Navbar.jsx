@@ -20,7 +20,7 @@ export default function Navbar() {
   const isProfilePage = location.pathname === "/profile"
 
   return (
-    <nav className=" bg-indigo-500 border-gray-200  sm:mr-64 fixed top-0 left-0 w-full z-50 shadow-md">
+    <nav className="  bg-gray-900 border-gray-200  sm:mr-64 fixed top-0 left-0 w-full z-50 shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
 
