@@ -53,7 +53,7 @@ export default function Navbar() {
             />
           </div>
         ) : (
-          <Spinner />
+          !isProfilePage && <Spinner />
         )}
 
         <button

@@ -27,6 +27,7 @@ export default function PostDetails() {
 		if (data.message === "success") {
 
 			setPost(data?.post)
+			setLoading(false)
 		}
 
 

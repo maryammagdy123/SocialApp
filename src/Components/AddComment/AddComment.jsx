@@ -21,7 +21,6 @@ export default function AddComment({ postId }) {
 		if (data.message === "success") {
 			toast.success("comment added ")
 			reset()
-
 			setTimeout(() => {
 				window.location.reload()
 

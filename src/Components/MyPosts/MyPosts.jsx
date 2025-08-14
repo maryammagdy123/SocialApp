@@ -7,22 +7,20 @@ import AddComment from "../AddComment/AddComment";
 export default function MyPosts() {
 	let { user, setUser } = useContext(UserDataContext);
 
-
+	const USER_ID = user?._id;
 	let [posts, setPosts] = useState([]);
 	let [loading, setLoading] = useState(true);
 	const [openPostId, setOpenPostId] = useState(null);
 
 	useEffect(() => {
 		getMyPosts();
-
-
-	}, []);
+	}, [USER_ID]);
 
 	async function getMyPosts() {
-		setLoading(true);
+
 		try {
 			let { data } = await axios.get(
-				`https://linked-posts.routemisr.com/users/${user._id}/posts?limit=10`,
+				`https://linked-posts.routemisr.com/users/${USER_ID}/posts?limit=10`,
 				{
 					headers: {
 						token: localStorage.getItem("token"),
@@ -31,8 +29,6 @@ export default function MyPosts() {
 			)
 			if (data.message === "success") {
 				setPosts(data?.posts);
-				setUser()
-
 			}
 		} catch (error) {
 			console.error(error);
@@ -91,7 +87,7 @@ export default function MyPosts() {
 								{post.comments?.length || 0}
 							</button>
 						</div>
-						<AddComment postId={post._id}  />
+						<AddComment postId={post._id} />
 
 						{/* Comments section */}
 						{openPostId === post._id && (
@@ -103,14 +99,14 @@ export default function MyPosts() {
 											<img
 
 												src={
-													comment?.commentCreator?._id == user._id ? user.photo : comment?.comments?.commentCreator?.photo
+													comment?.commentCreator?._id == USER_ID? user.photo : comment?.comments?.commentCreator?.photo
 												}
 												alt="Comment user"
 												className="w-8 h-8 rounded-full object-cover"
 											/>
 											<div className="bg-gray-100 px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
 												<span className="font-semibold text-blue-600">
-													{comment?.commentCreator?._id == user._id ? "You " : comment.commentCreator.name}
+													{comment?.commentCreator?._id == USER_ID ? "You " : comment.commentCreator.name}
 												</span>{" "}
 												{comment.content}
 											</div>
