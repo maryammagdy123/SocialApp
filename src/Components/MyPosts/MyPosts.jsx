@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../Context/UserDataContext";
 import axios from "axios";
-import { FaRegCommentDots } from "react-icons/fa";
-import AddComment from "../AddComment/AddComment";
-import Spinner from "../Spinner/Spinner";
+// import { FaRegCommentDots } from "react-icons/fa";
+// import AddComment from "../AddComment/AddComment";
+// import Spinner from "../Spinner/Spinner";
 import Post from "../Post/Post";
 
 export default function MyPosts() {
-	let { user, setUser } = useContext(UserDataContext);
+	let { user } = useContext(UserDataContext);
 
 	const USER_ID = user?._id;
 
@@ -51,9 +51,9 @@ export default function MyPosts() {
 			) : (
 				posts.map((post) => (
 
-					
-			<Post key={post._id} post={post} showAllComments={false} />
-			
+
+					<Post key={post._id} post={post} showAllComments={false} />
+
 				))
 			)}
 		</div>
@@ -62,78 +62,78 @@ export default function MyPosts() {
 
 }
 
-	// <div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto   ">
-	// 					{/* Post content */}
-	// 					{/* User Info */}
-	// 					<div className="flex items-center gap-3 ">
-	// 						{user ? <>
-	// 							<img
-	// 								src={user?.photo || "https://via.placeholder.com/40"}
-	// 								alt={user?.name || "User"}
-	// 								className="w-10 h-10 rounded-full object-cover"
-	// 							/>
-	// 							<span className="text-white font-medium">
-	// 								{user?.name || "Unknown User"}
-	// 							</span>
-	// 						</> : <Spinner />}
-	// 					</div>
+// <div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto   ">
+// 					{/* Post content */}
+// 					{/* User Info */}
+// 					<div className="flex items-center gap-3 ">
+// 						{user ? <>
+// 							<img
+// 								src={user?.photo || "https://via.placeholder.com/40"}
+// 								alt={user?.name || "User"}
+// 								className="w-10 h-10 rounded-full object-cover"
+// 							/>
+// 							<span className="text-white font-medium">
+// 								{user?.name || "Unknown User"}
+// 							</span>
+// 						</> : <Spinner />}
+// 					</div>
 
-	// 					{/* Post Image */}
-	// 					{post.image && (
-	// 						<img
-	// 							src={post.image}
-	// 							alt="Post"
-	// 							className="rounded-lg max-h-60 object-cover"
-	// 						/>
-	// 					)}
+// 					{/* Post Image */}
+// 					{post.image && (
+// 						<img
+// 							src={post.image}
+// 							alt="Post"
+// 							className="rounded-lg max-h-60 object-cover"
+// 						/>
+// 					)}
 
-	// 					{/* Post Body */}
-	// 					<p className="text-white">{post.body}</p>
+// 					{/* Post Body */}
+// 					<p className="text-white">{post.body}</p>
 
-	// 					{/* Post footer */}
-	// 					<div className="flex items-center justify-between border-t pt-3 text-gray-500 text-sm">
-	// 						<span>{post.likes?.length || 0} Likes</span>
+// 					{/* Post footer */}
+// 					<div className="flex items-center justify-between border-t pt-3 text-gray-500 text-sm">
+// 						<span>{post.likes?.length || 0} Likes</span>
 
-	// 						<button
-	// 							className="flex items-center gap-1 hover:text-blue-600"
-	// 							onClick={() =>
-	// 								setOpenPostId(openPostId === post._id ? null : post._id)
-	// 							}
-	// 						>
-	// 							<FaRegCommentDots />
-	// 							{post.comments?.length || 0}
-	// 						</button>
-	// 					</div>
-	// 					<AddComment postId={post._id} />
+// 						<button
+// 							className="flex items-center gap-1 hover:text-blue-600"
+// 							onClick={() =>
+// 								setOpenPostId(openPostId === post._id ? null : post._id)
+// 							}
+// 						>
+// 							<FaRegCommentDots />
+// 							{post.comments?.length || 0}
+// 						</button>
+// 					</div>
+// 					<AddComment postId={post._id} />
 
-	// 					{/* Comments section */}
-	// 					{openPostId === post._id && (
-	// 						<div className="mt-3 space-y-2">
-	// 							{post.comments?.length > 0 ? (
-	// 								post.comments.map((comment, i) => (
-	// 									<div key={i} className="flex items-start gap-3">
+// 					{/* Comments section */}
+// 					{openPostId === post._id && (
+// 						<div className="mt-3 space-y-2">
+// 							{post.comments?.length > 0 ? (
+// 								post.comments.map((comment, i) => (
+// 									<div key={i} className="flex items-start gap-3">
 
-	// 										<img
+// 										<img
 
-	// 											src={
-	// 												comment?.commentCreator?._id == USER_ID ? user.photo : comment?.comments?.commentCreator?.photo
-	// 											}
-	// 											alt="Comment user"
-	// 											className="w-8 h-8 rounded-full object-cover"
-	// 										/>
-	// 										<div className="bg-gray-100 px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
-	// 											<span className="font-semibold text-blue-600">
-	// 												{comment?.commentCreator?._id == USER_ID ? "You " : comment.commentCreator.name}
-	// 											</span>{" "}
-	// 											{comment.content}
-	// 										</div>
-	// 										{/* adding comment */}
+// 											src={
+// 												comment?.commentCreator?._id == USER_ID ? user.photo : comment?.comments?.commentCreator?.photo
+// 											}
+// 											alt="Comment user"
+// 											className="w-8 h-8 rounded-full object-cover"
+// 										/>
+// 										<div className="bg-gray-100 px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
+// 											<span className="font-semibold text-blue-600">
+// 												{comment?.commentCreator?._id == USER_ID ? "You " : comment.commentCreator.name}
+// 											</span>{" "}
+// 											{comment.content}
+// 										</div>
+// 										{/* adding comment */}
 
-	// 									</div>
-	// 								))
-	// 							) : (
-	// 								<p className="text-gray-400 text-sm">No comments yet</p>
-	// 							)}
-	// 						</div>
-	// 					)}
-	// 				</div>
+// 									</div>
+// 								))
+// 							) : (
+// 								<p className="text-gray-400 text-sm">No comments yet</p>
+// 							)}
+// 						</div>
+// 					)}
+// 				</div>
