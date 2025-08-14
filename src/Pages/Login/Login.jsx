@@ -47,7 +47,7 @@ export default function Login() {
 
 	async function handleLogin(value) {
 		let { data } = await axios.post(`https://linked-posts.routemisr.com/users/signin`, value).catch(error => {
-			console.log(error)
+			
 			toast.error(error.response.data.error)
 		})
 		if (data?.message === "success") {

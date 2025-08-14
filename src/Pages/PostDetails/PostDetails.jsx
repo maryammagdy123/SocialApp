@@ -17,18 +17,19 @@ export default function PostDetails() {
 	}, [id])
 
 	async function getSinglePost() {
-		try {
-			let { data } = await axios.get(`https://linked-posts.routemisr.com/posts/${id}`, {
-				headers: {
-					token: localStorage.getItem("token")
-				}
-			})
-			console.log(data);
-			setPost(data?.post)
 
-		} catch (err) {
-			console.error("Error fetching posts:", err);
+		let { data } = await axios.get(`https://linked-posts.routemisr.com/posts/${id}`, {
+			headers: {
+				token: localStorage.getItem("token")
+			}
+		})
+
+		if (data.message === "success") {
+
+			setPost(data?.post)
 		}
+
+
 
 
 	}

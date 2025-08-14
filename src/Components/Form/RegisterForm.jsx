@@ -82,19 +82,16 @@ export default function RegisterForm() {
 
 
 	async function onSubmit(value) {
-		console.log("Data to send:", value);
+	
 
 		try {
 			const response = await axios.post(`https://linked-posts.routemisr.com/users/signup`, value);
-
-			console.log("Success:", response.data);
 
 			if (response?.data?.message === "success") {
 				toast.success("Account created  successfully")
 				navg("/login");
 			}
 		} catch (error) {
-			console.log("Error during signup:", error.response?.data || error.message);
 			toast.error(error.response.data.error)
 		}
 	}

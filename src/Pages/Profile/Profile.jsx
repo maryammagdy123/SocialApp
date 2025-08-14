@@ -23,7 +23,6 @@ export default function Profile() {
 			}
 		})
 		if(data.message==="success"){
-			console.log(data)
 			setUser()
 			toast.success("Photo changed successfully")
 			setIsEditing(false)

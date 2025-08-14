@@ -43,10 +43,10 @@ export default function MyPosts() {
 
 	return (
 		<div className="my-6 ">
-         <div className="flex flex-col justify-center  text-black my-4">
-					<h1 className="text-2xl p-2">Posts</h1>
-					<div className="w-[20%] rounded-2xl h-[10px]  bg-blue-500"></div>
-				 </div>
+			<div className="flex flex-col justify-center  text-black my-4">
+				<h1 className="text-2xl p-2">Posts</h1>
+				<div className="w-[20%] rounded-2xl h-[10px]  bg-blue-500"></div>
+			</div>
 			{loading ? (
 				<p>Loading...</p>
 			) : (
