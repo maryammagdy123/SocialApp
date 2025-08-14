@@ -91,7 +91,7 @@ export default function MyPosts() {
 								{post.comments?.length || 0}
 							</button>
 						</div>
-						<AddComment postId={post._id} />
+						<AddComment postId={post._id}  />
 
 						{/* Comments section */}
 						{openPostId === post._id && (

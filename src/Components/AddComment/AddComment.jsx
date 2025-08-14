@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
-export default function AddComment({ postId}) {
+export default function AddComment({ postId }) {
 	let { register, handleSubmit, reset } = useForm()
 
 	async function handleAddComment(value) {
@@ -21,8 +21,10 @@ export default function AddComment({ postId}) {
 		if (data.message === "success") {
 			toast.success("comment added ")
 			reset()
+
 			setTimeout(() => {
 				window.location.reload()
+
 			}, 1000)
 		}
 	}
