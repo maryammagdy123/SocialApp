@@ -11,3 +11,10 @@ body {
   font-size: 1.5625rem;
   color: white;
 }
+
+* {
+  box-sizing: border-box;
+  margin-left: 0;
+  
+
+}

@@ -4,11 +4,11 @@
 // prpperties of the postsList will be passed to this componnet (from feeds to post)
 
 
-import { useContext} from 'react';
+import { useContext } from 'react';
 import Image from '/image.png';
 
 import { FaHeart, FaRegComment } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import PostOptions from '../PostOptions/PostOptions';
 import { UserDataContext } from '../../Context/UserDataContext';
 import AddComment from '../AddComment/AddComment';
@@ -26,15 +26,16 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 
 	let postCreator = User._id;
 	let loggedUsr = user._id;
-	
+
 	let showPostOptions = postCreator == loggedUsr
 
-
+	const location = useLocation()
+	const isProfilePage = location.pathname === "/profile"
 
 
 
 	return (
-		<div className="bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6 w-full">
+		<div className={isProfilePage ? " max-w-lg bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6" : "bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6 w-full "}>
 
 			{/* User Info */}
 			<div className='flex justify-between items-center'>
@@ -99,7 +100,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 								<div className="bg-white px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
 									<span className="font-semibold text-blue-600">
 										{/* {comment.commentCreator?.name || "User"}: */}
-										{comment?.commentCreator?._id==loggedUsr ? "You " : comment.commentCreator.name}
+										{comment?.commentCreator?._id == loggedUsr ? "You " : comment.commentCreator.name}
 									</span>{" "}
 									{comment.content}
 								</div>
@@ -116,7 +117,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 							<div className="bg-white px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
 								<span className="font-semibold text-blue-600">
 									{/* {comments[comments.length - 1].commentCreator?.name || "User"}: */}
-									{ comments[comments.length - 1].commentCreator?._id==loggedUsr ? "You " : comments[comments.length - 1].commentCreator?.name}
+									{comments[comments.length - 1].commentCreator?._id == loggedUsr ? "You " : comments[comments.length - 1].commentCreator?.name}
 								</span>{" "}
 								{comments[comments.length - 1].content}
 							</div>
