@@ -39,7 +39,7 @@ export default function PostDetails() {
 
 	return (
 		<>
-			<div className="min-h-screen flex items-center justify-center px-4 py-8">
+			<div className="min-h-screen flex items-center justify-center px-4 my-10 py-10">
 				<div className="w-full max-w-2xl">
 					{post && post._id ? (
 						<Post post={post} showDetailsButton={false} showComments={true} />

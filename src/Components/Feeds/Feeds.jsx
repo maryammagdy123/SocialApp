@@ -40,7 +40,7 @@ export default function Feeds() {
 			<h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">Home Feeds..</h1>
 
 
-			<div className="w-full   max-w-2xl space-y-6">
+			<div className="w-full max-w-2xl space-y-6">
 				<CreatePost />
 
 				{loading ? (
