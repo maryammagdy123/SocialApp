@@ -1,8 +1,9 @@
 import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from 'react-hook-form';
+import Spinner from '../Spinner/Spinner';
 
-export default function CustomForm({ onSubmit, inputs, schema, buttonLabel, isPending }) {
+export default function CustomForm({ onSubmit, inputs, schema, buttonLabel, isPending, isRegister }) {
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: zodResolver(schema),
 		mode: "onBlur"
@@ -29,21 +30,25 @@ export default function CustomForm({ onSubmit, inputs, schema, buttonLabel, isPe
 				})
 			}
 
-			<label htmlFor="gender" className="block mb-2 text-sm font-medium text-gray-900">Gender</label>
-			<select
-				id="gender"
-				{...register("gender")}
-				className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 my-4"
-			>
-				<option value="male">Male</option>
-				<option value="female">Female</option>
-			</select>
+			{isRegister && (
+				<>
+					<label htmlFor="gender" className="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+					<select
+						id="gender"
+						{...register("gender")}
+						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 my-4"
+					>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+					</select>
 
+				</>
+			)}
 			<button type="submit" disabled={isPending} className="w-[50%] px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
 				{isPending ? (
 					<Spinner />
 				) : (
-					{ buttonLabel }
+					buttonLabel
 				)}
 
 			</button>

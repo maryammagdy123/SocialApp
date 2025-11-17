@@ -2,8 +2,7 @@ import { useContext } from "react"
 import toast from "react-hot-toast"
 import { UserDataContext } from "../Context/UserDataContext"
 import { useNavigate } from "react-router"
-import axios from "axios"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import { loginUser, RegisterUser } from "../services/apiServices"
 
 export function useAuthentication() {
@@ -17,7 +16,8 @@ export function useAuthentication() {
 		mutationFn: loginUser,
 
 		onSuccess: (data) => {
-			if (data.data?.message === "success") {
+			console.log("dataaaa", data)
+			if (data.message === "success") {
 				// Save token
 				localStorage.setItem("token", data.token);
 
@@ -33,7 +33,7 @@ export function useAuthentication() {
 		},
 
 		onError: (error) => {
-			toast.error(error.response?.data?.error || "Login failed");
+			toast.error(error.response.data.error);
 		},
 	});
 
@@ -43,7 +43,7 @@ export function useAuthentication() {
 	const { mutate: Register, isPending: registerLoading } = useMutation({
 		mutationFn: RegisterUser,
 		onSuccess: (data) => {
-			if (data?.data?.message === "success") {
+			if (data.message === "success") {
 				toast.success("Account created  successfully")
 				navg("/login");
 			}

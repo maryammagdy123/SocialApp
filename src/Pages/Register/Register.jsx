@@ -40,7 +40,7 @@ export default function Register() {
 					<div className="right flex flex-1 p-6 flex-col justify-center gap-4 bg-white">
 						<h1 className="text-2xl font-bold mb-4 text-indigo-800">Register</h1>
 
-						<CustomForm onSubmit={handleRegister} inputs={RegisterInputs} schema={RegisterSchema} buttonLabel="Register" isPending={registerLoading} />
+						<CustomForm onSubmit={handleRegister} inputs={RegisterInputs} schema={RegisterSchema} buttonLabel="Register" isPending={registerLoading} isRegister="true" />
 					</div>
 
 				</div>
