@@ -35,102 +35,133 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 
 
 	return (
-		<div className={` bg-gray-900 rounded-xl shadow-md py-6 px-4 sm:px-6 ${isProfilePage ? "max-w-lg" : "w-full"}`}>
-
+		<div
+			style={{
+				background: "var(--card-bg)",
+				borderRadius: "var(--radius-lg)",
+				boxShadow: "var(--shadow-sm)",
+				padding: "var(--space-4)",
+			}}
+			className={`w-full ${isProfilePage ? "max-w-lg" : ""} mb-6`}
+		>
 			{/* User Info */}
-			<div className='flex justify-between items-center'>
-				<div className="flex items-center gap-4 mb-4">
+			<div className="flex justify-between items-center mb-4">
+				<div className="flex items-center gap-4">
 					<img
 						src={User?.photo}
 						alt={body}
 						className="w-10 h-10 rounded-full object-cover"
 					/>
 					<div>
-						<h2 className="font-semibold text-white">{User.name}</h2>
-						<p className="text-sm text-white">
+						<h2 style={{ color: "var(--text-main)" }} className="font-semibold">
+							{User.name}
+						</h2>
+						<p style={{ color: "var(--text-soft)" }} className="text-sm">
 							{new Date(createdAt).toLocaleDateString()}
 						</p>
 					</div>
 				</div>
 
-				{
-					// if the post creator the same as the one who is logged in then show the post op
-					showPostOptions && <PostOptions _id={_id} postBody={body} postImage={image} />
-				}
+				{showPostOptions && <PostOptions _id={_id} postBody={body} postImage={image} />}
 			</div>
 
 			{/* Post Content */}
 			<div className="mb-4">
-				<p className="text-white mb-2">{body}</p>
-				{image && <img src={image} alt="" className="rounded-md w-full max-h-96 object-cover" />}
+				<p style={{ color: "var(--text-main)" }} className="mb-2">{body}</p>
+				{image && (
+					<img
+						src={image}
+						alt=""
+						className="rounded-md w-full max-h-96 object-cover"
+						style={{ borderRadius: "var(--radius-md)" }}
+					/>
+				)}
 			</div>
 
 			{/* Actions */}
-			<div className="flex items-center justify-between gap-2 mb-4 text-white">
-				<div className='flex items-center justify-between gap-2 hover:text-blue-700  '>
+			<div className="flex items-center justify-between gap-2 mb-4">
+				<div className="flex items-center gap-2 cursor-pointer hover:text-blue-700" style={{ color: "var(--text-main)" }}>
 					<FaRegComment className="text-base" />
 					<span>{comments.length}</span>
 				</div>
 				{showDetailsButton && (
 					<Link to={`/postDetails/${_id}`}>
-						<p className='text-blue-700 underline'>see post details</p>
+						<p className="underline" style={{ color: "var(--accent)" }}>
+							see post details
+						</p>
 					</Link>
 				)}
-
-
 			</div>
 
-			{/* Latest Comment */}
+			{/* Latest Comments */}
 			{comments.length > 0 && (
-				<div className="bg-gray-50 border rounded-xl p-4 mb-6">
-					<h3 className="text-sm font-semibold text-black my-2">
+				<div
+					style={{
+						background: "var(--background)",
+						borderRadius: "var(--radius-md)",
+						padding: "var(--space-4)",
+					}}
+					className="mb-6"
+				>
+					<h3 style={{ color: "var(--text-main)" }} className="text-sm font-semibold my-2">
 						{showAllComments ? "All comments:" : "Latest comment:"}
 					</h3>
 
-					{showAllComments ? (
-						// All comments to show
-						comments.map((comment, index) => (
-
+					{showAllComments
+						? comments.map((comment, index) => (
 							<div key={index} className="flex items-start gap-3 mb-3">
 								<img
-									src={comment?.commentCreator?._id == user?._id ? user?.photo : Image}
+									src={comment?.commentCreator?._id === user?._id ? user?.photo : Image}
 									alt="Comment user"
 									className="w-8 h-8 rounded-full object-cover"
 								/>
-								<div className="bg-white px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
-									<span className="font-semibold text-blue-600">
-										{/* {comment.commentCreator?.name || "User"}: */}
-										{comment?.commentCreator?._id == loggedUsr ? "You " : comment.commentCreator.name}
+								<div
+									style={{
+										background: "var(--card-bg)",
+										boxShadow: "var(--shadow-sm)",
+										borderRadius: "var(--radius-md)",
+									}}
+									className="px-4 py-2 text-sm max-w-[80%]"
+								>
+									<span style={{ color: "var(--accent)", fontWeight: 600 }}>
+										{comment?.commentCreator?._id === loggedUsr ? "You " : comment.commentCreator.name}
 									</span>{" "}
 									{comment.content}
 								</div>
 							</div>
 						))
-					) : (
-						// Last comment
-						<div className="flex items-start gap-3">
-							<img
-								src={comments[comments.length - 1]?.commentCreator?._id == user?._id ? user?.photo : Image}
-								alt="Comment user"
-								className="w-8 h-8 rounded-full object-cover"
-							/>
-							<div className="bg-white px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
-								<span className="font-semibold text-blue-600">
-									{/* {comments[comments.length - 1].commentCreator?.name || "User"}: */}
-									{comments[comments.length - 1].commentCreator?._id == loggedUsr ? "You " : comments[comments.length - 1].commentCreator?.name}
-								</span>{" "}
-								{comments[comments.length - 1].content}
-							</div>
-						</div>
-					)}
+						: (() => {
+							const lastComment = comments[comments.length - 1];
+							return (
+								<div className="flex items-start gap-3">
+									<img
+										src={lastComment?.commentCreator?._id === user?._id ? user?.photo : Image}
+										alt="Comment user"
+										className="w-8 h-8 rounded-full object-cover"
+									/>
+									<div
+										style={{
+											background: "var(--card-bg)",
+											boxShadow: "var(--shadow-sm)",
+											borderRadius: "var(--radius-md)",
+										}}
+										className="px-4 py-2 text-sm max-w-[80%]"
+									>
+										<span style={{ color: "var(--accent)", fontWeight: 600 }}>
+											{lastComment.commentCreator?._id === loggedUsr ? "You " : lastComment.commentCreator?.name}
+										</span>{" "}
+										{lastComment.content}
+									</div>
+								</div>
+							);
+						})()}
 				</div>
 			)}
 
-
 			{/* Add New Comment */}
 			<AddComment postId={_id} />
-
 		</div>
+
 	);
 }
 
