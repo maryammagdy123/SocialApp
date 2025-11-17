@@ -8,7 +8,7 @@ export function RoutingGuard({ children }) {
 
 	// if a user
   useEffect(() => {
-    if (!user && localStorage.getItem("token")) {
+    if (user && localStorage.getItem("token")) {
       getLoggedUserData();
     }
   });
