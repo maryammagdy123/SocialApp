@@ -33,63 +33,36 @@ export default function Feeds() {
 			setLoading(false);
 		}
 	}
+
 	return (
-		<div className="min-h-screen w-full lg:w-[80%] py-8 px-3 flex flex-col items-center mt-12 lg:ml-56 sm:mx-auto">
-			{/* Title */}
-			<h1 style={{ color: "var(--text-main)" }} className="text-2xl font-bold mb-6 text-center">
-				Home Feeds..
-			</h1>
+		<div className="min-h-screen w-full lg:w-[80%] py-8 px-3 flex flex-col items-center mt-12 lg:ml-56 mx-auto">
 
-			<div className="w-full max-w-2xl space-y-6">
-				{/* Create Post Card */}
-				<div
-					style={{
-						background: "var(--card-bg)",
-						boxShadow: "var(--shadow-sm)",
-						borderRadius: "var(--radius-md)",
-						padding: "var(--space-4)",
-					}}
-				>
-					<CreatePost />
-				</div>
+			<h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">Home Feeds..</h1>
 
-				{/* Loading / Error / Posts */}
+
+			<div className="w-full   max-w-2xl space-y-6">
+				<CreatePost />
+
 				{loading ? (
 					<LoadingSkeleton />
 				) : error ? (
-					<div
-						style={{
-							color: "var(--error)",
-							background: "rgba(239, 68, 68, 0.1)",
-							borderRadius: "var(--radius-md)",
-							padding: "var(--space-3) var(--space-4)",
-						}}
-						className="text-center"
-					>
+					<div className="text-red-600 text-center bg-red-100 px-4 py-2 rounded-md">
 						{error}
 					</div>
 				) : posts.length > 0 ? (
 					posts.map((post) => (
-						<div
-							key={post._id}
-							style={{
-								background: "var(--card-bg)",
-								boxShadow: "var(--shadow-sm)",
-								borderRadius: "var(--radius-md)",
-								padding: "var(--space-4)",
-							}}
-						>
-							<Post post={post} showAllComments={false} />
-						</div>
+						<Post key={post._id} post={post} showAllComments={false} />
+
 					))
 				) : (
-					<div className="text-center mt-10" style={{ color: "var(--text-soft)" }}>
+					<div className="text-center mt-10 text-gray-600">
 						<p className="text-lg font-medium">No posts available right now.</p>
-						<p className="text-sm">Check back later or try refreshing the page.</p>
+						<p className="text-sm text-gray-400">Check back later or try refreshing the page.</p>
 					</div>
 				)}
 			</div>
 		</div>
+
 	);
 }
 

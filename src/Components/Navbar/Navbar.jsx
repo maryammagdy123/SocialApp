@@ -1,69 +1,90 @@
-import { useContext, useEffect } from 'react'
-import { Link, NavLink, useLocation, useNavigate } from 'react-router'
+import { useContext, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { UserDataContext } from '../../Context/UserDataContext';
 import Spinner from '../Spinner/Spinner';
 import { initFlowbite } from "flowbite";
 import { PiSignOutBold } from 'react-icons/pi';
 
 export default function Navbar() {
-  let { user, setUser } = useContext(UserDataContext)
-  let logOut = useNavigate()
+  const { user, setUser } = useContext(UserDataContext);
+  const navigate = useNavigate();
+
   function handleLogOut() {
-    localStorage.removeItem("token")
-    setUser(null)
-    logOut("/login")
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
   }
+
   useEffect(() => {
     initFlowbite();
   }, []);
-  const location = useLocation()
-  const isProfilePage = location.pathname === "/profile"
+
+  const location = useLocation();
+  const isProfilePage = location.pathname === "/profile";
 
   return (
-    <nav className="  bg-gray-900 border-gray-200  sm:mr-64 fixed top-0 left-0 w-full z-50 shadow-md">
+    <nav
+      style={{
+        background: "var(--background)",
+        boxShadow: "var(--shadow-md)",
+      }}
+      className="fixed top-0 left-0 w-full z-50"
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-
-
-        {isProfilePage ? <span className="flex  items-center   ">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white uppercase "> profile</span>
-        </span> :
-          <Link to="/" className="flex  items-center space-x-3 rtl:space-x-reverse">
-
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white ">SOHBA</span>
+        {/* Logo / Page Title */}
+        {isProfilePage ? (
+          <span className="flex items-center">
+            <span
+              style={{ color: "var(--text-main)" }}
+              className="self-center text-2xl font-semibold uppercase"
+            >
+              Profile
+            </span>
+          </span>
+        ) : (
+          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <span
+              style={{ color: "var(--text-main)" }}
+              className="self-center text-2xl font-semibold"
+            >
+              SOHBA
+            </span>
           </Link>
-        }
+        )}
 
-
-
+        {/* User Info / Actions */}
         {user ? (
           <div className="hidden sm:flex gap-3 items-center">
-            {!isProfilePage &&
+            {!isProfilePage && (
               <div className='flex gap-2 items-center'>
                 <img
                   className="w-10 h-10 rounded-full object-cover"
                   src={user.photo || "/default-avatar.jpg"}
                   alt="User"
                 />
-                <span className="text-gray-900 dark:text-white">Hello  , {user.name}</span>
-              </div>}
+                <span style={{ color: "var(--text-main)" }}>
+                  Hello, {user.name}
+                </span>
+              </div>
+            )}
             <PiSignOutBold
-              className="SignOut-icon cursor-pointer sm:hidden flex"
+              className="SignOut-icon cursor-pointer"
               aria-label="Sign Out"
               onClick={handleLogOut}
+              style={{ color: "var(--primary-600)" }}
             />
           </div>
         ) : (
           !isProfilePage && <Spinner />
         )}
 
+        {/* Mobile Menu Button */}
         <button
           data-drawer-target="default-sidebar"
           data-drawer-toggle="default-sidebar"
           aria-controls="default-sidebar"
           type="button"
-          className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg  
-                     hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 
-                     dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
+          className="inline-flex items-center p-2 text-sm rounded-lg hover:bg-[var(--primary-50)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-200)] lg:hidden"
         >
           <span className="sr-only">Open sidebar</span>
           <svg
@@ -79,11 +100,7 @@ export default function Navbar() {
             ></path>
           </svg>
         </button>
-
       </div>
     </nav>
-  )
+  );
 }
-
-
-
