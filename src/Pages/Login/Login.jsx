@@ -1,53 +1,26 @@
 import React, { useContext } from 'react'
 import './login.css'
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as zod from "zod";
 import Spinner from '../../Components/Spinner/Spinner';
 import { UserDataContext } from '../../Context/UserDataContext';
+import { LoginInputs } from '../../Constants/constants';
+import { RegisterSchema } from '../../validation/RegisterSchema';
+import { LoginSchema } from '../../validation/LoginSchema';
 
 
 export default function Login() {
 	let { getLoggedUserData } = useContext(UserDataContext)
-	const schema = zod.object({
-		email: zod.string()
-			.nonempty("Email is required!")
-			.regex(/^[\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}$/, "Enter a valid email address"),
-		password: zod.string()
-			.nonempty("Password cannot be empty")
-			.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/, "Password must be at least 8 characters and include uppercase, lowercase, and a number"),
-	})
-	const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
-		resolver: zodResolver(schema),
-	});
+
+
 	let navg = useNavigate()
 
-	const inputs = [
 
-		{
-			labelTitle: "Enter Your Email address",
-			labelFor: "email",
-			id: "email",
-			type: "email",
-			placeholder: "john.doe@gmail.com",
-			autoComplete: "email"
-		},
-		{
-			labelTitle: "Enter Your password",
-			labelFor: "password",
-			id: "password",
-			type: "password",
-			placeholder: "",
-			autoComplete: "new-password"
-		}
-	];
 
 	async function handleLogin(value) {
 		let { data } = await axios.post(`https://linked-posts.routemisr.com/users/signin`, value).catch(error => {
-			
+
 			toast.error(error.response.data.error)
 		})
 		if (data?.message === "success") {
@@ -63,11 +36,11 @@ export default function Login() {
 	}
 	return (
 		<>
-		
+
 			<section className="login min-h-screen  bg-gray-900 flex flex-col justify-center items-center md:p-20 p-4 ">
-			{/* <h1 className='text-4xl text-center text-white p-4'>Linked Post</h1> */}
+				{/* <h1 className='text-4xl text-center text-white p-4'>Linked Post</h1> */}
 				<div className="card min-h-[500px] flex flex-col lg:flex-row bg-white w-full max-w-4xl rounded-lg overflow-hidden shadow-lg  ">
-				
+
 					{/* Left Side */}
 					<div className="left flex-1 p-6 flex flex-col justify-center gap-4 
                           bg-[linear-gradient(to_top,rgba(56,189,248,0.2),rgba(99,102,241,0.2)),url('/assets/login.jpg')] 
@@ -89,7 +62,7 @@ export default function Login() {
 					<div className="right flex flex-1 p-6 flex-col justify-center gap-4 bg-white">
 						<h1 className="text-2xl font-bold mb-4 text-indigo-800">Login</h1>
 
-						{/* start form  */}
+						{/* start form 
 						<form onSubmit={handleSubmit(handleLogin)}>
 							{
 								inputs.map((el, index) => {
@@ -122,7 +95,9 @@ export default function Login() {
 								)}
 
 							</button>
-						</form>
+						</form> */}
+
+						<CustomForm onSubmit={handleLogin} inputs={LoginInputs} schema={LoginSchema} buttonLabel="Register" />
 					</div>
 
 				</div>

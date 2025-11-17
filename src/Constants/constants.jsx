@@ -40,3 +40,25 @@ export const RegisterInputs = [
 		autoComplete: "bday"
 	},
 ];
+
+
+
+export const LoginInputs = [
+
+	{
+		labelTitle: "Enter Your Email address",
+		labelFor: "email",
+		id: "email",
+		type: "email",
+		placeholder: "john.doe@gmail.com",
+		autoComplete: "email"
+	},
+	{
+		labelTitle: "Enter Your password",
+		labelFor: "password",
+		id: "password",
+		type: "password",
+		placeholder: "",
+		autoComplete: "new-password"
+	}
+];
