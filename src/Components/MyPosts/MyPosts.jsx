@@ -1,38 +1,28 @@
 import { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../Context/UserDataContext";
 import axios from "axios";
-// import { FaRegCommentDots } from "react-icons/fa";
-// import AddComment from "../AddComment/AddComment";
-// import Spinner from "../Spinner/Spinner";
 import Post from "../Post/Post";
 
 export default function MyPosts() {
-	let { user } = useContext(UserDataContext);
-
+	const { user } = useContext(UserDataContext);
 	const USER_ID = user?._id;
 
-	let [posts, setPosts] = useState([]);
-	let [loading, setLoading] = useState(true);
-	// const [openPostId, setOpenPostId] = useState(null);
+	const [posts, setPosts] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		getMyPosts();
+		if (USER_ID) getMyPosts();
 	}, [USER_ID]);
 
 	async function getMyPosts() {
-
 		try {
-			let { data } = await axios.get(
+			const { data } = await axios.get(
 				`https://linked-posts.routemisr.com/users/${USER_ID}/posts?limit=10`,
 				{
-					headers: {
-						token: localStorage.getItem("token"),
-					},
+					headers: { token: localStorage.getItem("token") },
 				}
-			)
-			if (data.message === "success") {
-				setPosts(data?.posts);
-			}
+			);
+			if (data.message === "success") setPosts(data.posts);
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -41,99 +31,29 @@ export default function MyPosts() {
 	}
 
 	return (
-		<div className="my-6 space-y-6  ">
-			<div className="flex flex-col justify-center  text-black my-4">
+		<div className="my-6 space-y-6">
+			<div className="flex flex-col justify-center text-text-main my-4">
 				<h1 className="text-2xl p-2">Posts</h1>
-				<div className="w-[20%] rounded-2xl h-[10px]  bg-blue-500"></div>
+				<div className="w-[20%] rounded-2xl h-[10px] bg-primary-500"></div>
 			</div>
+
 			{loading ? (
-				<p>Loading...</p>
+				<p style={{ color: "var(--text-soft)" }}>Loading...</p>
 			) : (
 				posts.map((post) => (
-
-
-					<Post key={post._id} post={post} showAllComments={false} />
-
+					<div
+						key={post._id}
+						className="mx-auto"
+						style={{
+							background: "var(--card-bg)",
+							borderRadius: "var(--radius-lg)",
+							boxShadow: "var(--shadow-sm)",
+						}}
+					>
+						<Post post={post} showAllComments={false} />
+					</div>
 				))
 			)}
 		</div>
 	);
-
-
 }
-
-// <div key={post._id} className="bg-gray-900 shadow-md p-4 mb-6 space-y-6 mx-auto   ">
-// 					{/* Post content */}
-// 					{/* User Info */}
-// 					<div className="flex items-center gap-3 ">
-// 						{user ? <>
-// 							<img
-// 								src={user?.photo || "https://via.placeholder.com/40"}
-// 								alt={user?.name || "User"}
-// 								className="w-10 h-10 rounded-full object-cover"
-// 							/>
-// 							<span className="text-white font-medium">
-// 								{user?.name || "Unknown User"}
-// 							</span>
-// 						</> : <Spinner />}
-// 					</div>
-
-// 					{/* Post Image */}
-// 					{post.image && (
-// 						<img
-// 							src={post.image}
-// 							alt="Post"
-// 							className="rounded-lg max-h-60 object-cover"
-// 						/>
-// 					)}
-
-// 					{/* Post Body */}
-// 					<p className="text-white">{post.body}</p>
-
-// 					{/* Post footer */}
-// 					<div className="flex items-center justify-between border-t pt-3 text-gray-500 text-sm">
-// 						<span>{post.likes?.length || 0} Likes</span>
-
-// 						<button
-// 							className="flex items-center gap-1 hover:text-blue-600"
-// 							onClick={() =>
-// 								setOpenPostId(openPostId === post._id ? null : post._id)
-// 							}
-// 						>
-// 							<FaRegCommentDots />
-// 							{post.comments?.length || 0}
-// 						</button>
-// 					</div>
-// 					<AddComment postId={post._id} />
-
-// 					{/* Comments section */}
-// 					{openPostId === post._id && (
-// 						<div className="mt-3 space-y-2">
-// 							{post.comments?.length > 0 ? (
-// 								post.comments.map((comment, i) => (
-// 									<div key={i} className="flex items-start gap-3">
-
-// 										<img
-
-// 											src={
-// 												comment?.commentCreator?._id == USER_ID ? user.photo : comment?.comments?.commentCreator?.photo
-// 											}
-// 											alt="Comment user"
-// 											className="w-8 h-8 rounded-full object-cover"
-// 										/>
-// 										<div className="bg-gray-100 px-4 py-2 rounded-lg shadow text-sm text-black max-w-[80%]">
-// 											<span className="font-semibold text-blue-600">
-// 												{comment?.commentCreator?._id == USER_ID ? "You " : comment.commentCreator.name}
-// 											</span>{" "}
-// 											{comment.content}
-// 										</div>
-// 										{/* adding comment */}
-
-// 									</div>
-// 								))
-// 							) : (
-// 								<p className="text-gray-400 text-sm">No comments yet</p>
-// 							)}
-// 						</div>
-// 					)}
-// 				</div>

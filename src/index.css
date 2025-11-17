@@ -46,6 +46,8 @@
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 20px;
+
+  --card-bg-dark: #111827
 }
 
 .btn-primary {

@@ -16,7 +16,7 @@ export default function Login() {
 	return (
 		<section style={{ background: "var(--background)" }} className="min-h-screen flex justify-center items-center p-4">
 			<div style={{ background: "var(--card-bg)", boxShadow: "var(--shadow-md)", borderRadius: "var(--radius-lg)" }}
-				className="w-full max-w-4xl flex flex-col lg:flex-row overflow-hidden">
+				className="w-full  flex flex-col lg:flex-row overflow-hidden">
 				{/* Left Side */}
 				<div style={{
 					backgroundImage: "linear-gradient(to top, rgba(56,189,248,0.2), rgba(99,102,241,0.2)), url('/assets/login.jpg')",

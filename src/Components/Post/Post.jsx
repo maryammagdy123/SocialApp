@@ -42,7 +42,7 @@ export default function Post({ post, showDetailsButton = true, showAllComments =
 				boxShadow: "var(--shadow-sm)",
 				padding: "var(--space-4)",
 			}}
-			className={`w-full ${isProfilePage ? "max-w-lg" : ""} mb-6`}
+			className={`w-full mb-6`}
 		>
 			{/* User Info */}
 			<div className="flex justify-between items-center mb-4">
