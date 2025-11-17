@@ -3,6 +3,7 @@ import { Link, } from 'react-router'
 import { RegisterSchema } from '../../validation/RegisterSchema'
 import { RegisterInputs } from '../../Constants/constants'
 import { useAuthentication } from '../../Hooks/useAuthentication'
+import CustomForm from '../../Components/Form/CustomForm'
 
 export default function Register() {
 
