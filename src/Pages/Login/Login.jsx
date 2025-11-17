@@ -1,37 +1,16 @@
 import './login.css'
-import React, { useContext } from 'react'
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router';
-import toast from 'react-hot-toast';
-import { UserDataContext } from '../../Context/UserDataContext';
+import React from 'react'
+import { Link } from 'react-router';
 import { LoginInputs } from '../../Constants/constants';
 import { LoginSchema } from '../../validation/LoginSchema';
+import { useAuthentication } from '../../Hooks/useAuthentication';
 
 
 export default function Login() {
-	let { getLoggedUserData } = useContext(UserDataContext)
-
-
-	let navg = useNavigate()
-
-
-
-	async function handleLogin(value) {
-		let { data } = await axios.post(`https://linked-posts.routemisr.com/users/signin`, value).catch(error => {
-
-			toast.error(error.response.data.error)
-		})
-		if (data?.message === "success") {
-			// saving user's token
-			localStorage.setItem("token", data.token)
-			// toast
-			toast.success("loged in successfully")
-
-			getLoggedUserData()
-			// navigate to home
-			navg("/");
-		}
-	}
+	const { Login, loginLoading } = useAuthentication();
+	const handleLogin = (value) => {
+		Login(value);
+	};
 	return (
 		<>
 
@@ -95,7 +74,7 @@ export default function Login() {
 							</button>
 						</form> */}
 
-						<CustomForm onSubmit={handleLogin} inputs={LoginInputs} schema={LoginSchema} buttonLabel="Register" />
+						<CustomForm onSubmit={handleLogin} inputs={LoginInputs} schema={LoginSchema} buttonLabel="Login" isPending={loginLoading} />
 					</div>
 
 				</div>

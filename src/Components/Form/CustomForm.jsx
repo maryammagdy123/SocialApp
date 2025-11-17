@@ -2,8 +2,8 @@ import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from 'react-hook-form';
 
-export default function CustomForm({ onSubmit, inputs, schema, buttonLabel }) {
-	const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+export default function CustomForm({ onSubmit, inputs, schema, buttonLabel, isPending }) {
+	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: zodResolver(schema),
 		mode: "onBlur"
 	});
@@ -39,8 +39,8 @@ export default function CustomForm({ onSubmit, inputs, schema, buttonLabel }) {
 				<option value="female">Female</option>
 			</select>
 
-			<button type="submit" disabled={isSubmitting} className="w-[50%] px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
-				{isSubmitting ? (
+			<button type="submit" disabled={isPending} className="w-[50%] px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+				{isPending ? (
 					<Spinner />
 				) : (
 					{ buttonLabel }

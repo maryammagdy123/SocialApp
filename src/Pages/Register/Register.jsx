@@ -1,28 +1,17 @@
-
 import './register.css'
-import { Link, useNavigate } from 'react-router'
-import RegisterForm from '../../Components/Form/RegisterForm'
+import { Link, } from 'react-router'
 import { RegisterSchema } from '../../validation/RegisterSchema'
 import { RegisterInputs } from '../../Constants/constants'
-import axios from 'axios'
-import toast from 'react-hot-toast'
+import { useAuthentication } from '../../Hooks/useAuthentication'
 
 export default function Register() {
-	let navg = useNavigate()
 
 
-	async function Register(value) {
-		try {
-			const response = await axios.post(`https://linked-posts.routemisr.com/users/signup`, value);
+	const { Register, registerLoading } = useAuthentication();
+	const handleRegister = (value) => {
+		Register(value);
+	};
 
-			if (response?.data?.message === "success") {
-				toast.success("Account created  successfully")
-				navg("/login");
-			}
-		} catch (error) {
-			toast.error(error.response.data.error)
-		}
-	}
 
 	return (
 
@@ -50,7 +39,7 @@ export default function Register() {
 					<div className="right flex flex-1 p-6 flex-col justify-center gap-4 bg-white">
 						<h1 className="text-2xl font-bold mb-4 text-indigo-800">Register</h1>
 
-						<CustomForm onSubmit={Register} inputs={RegisterInputs} schema={RegisterSchema} buttonLabel="Register" />
+						<CustomForm onSubmit={handleRegister} inputs={RegisterInputs} schema={RegisterSchema} buttonLabel="Register" isPending={registerLoading} />
 					</div>
 
 				</div>
