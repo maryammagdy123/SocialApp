@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
 import './login.css'
+import React, { useContext } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
-import Spinner from '../../Components/Spinner/Spinner';
 import { UserDataContext } from '../../Context/UserDataContext';
 import { LoginInputs } from '../../Constants/constants';
-import { RegisterSchema } from '../../validation/RegisterSchema';
 import { LoginSchema } from '../../validation/LoginSchema';
 
 
