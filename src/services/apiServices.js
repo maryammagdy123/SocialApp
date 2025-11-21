@@ -28,3 +28,10 @@ export const getPosts = async () => {
 	);
 	return data.posts
 }
+
+export const createPostApi = async (formData) => {
+	const { data } = await axios.post('https://linked-posts.routemisr.com/posts', formData, {
+		headers: { token: localStorage.getItem("token") }
+	});
+	return data
+}

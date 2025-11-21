@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from 'react';
 import { UserDataContext } from '../../Context/UserDataContext';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { LiaPhotoVideoSolid } from 'react-icons/lia';
+import usePost from '../../Hooks/usePost';
 
 export default function CreatePost() {
 
@@ -12,6 +12,7 @@ export default function CreatePost() {
 	const [showModal, setShowModal] = useState(false);
 	let { register, handleSubmit, reset } = useForm();
 	let fileInput = useRef();
+	const createPostMutation = usePost(fileInput, reset, setShowModal)
 
 	function handleFileChange(e) {
 		const file = e.target.files[0];
@@ -34,16 +35,7 @@ export default function CreatePost() {
 			formData.append("image", fileInput.current.files[0]);
 		}
 		formData.append("body", obj.body);
-		let { data } = await axios.post('https://linked-posts.routemisr.com/posts', formData, {
-			headers: { token: localStorage.getItem("token") }
-		});
-		if (data.message === "success") {
-			toast.success("Post created");
-			fileInput.current.value = "";
-			reset();
-			setShowModal(false);
-			window.location.reload()
-		}
+		createPostMutation.createPost(formData)
 	}
 
 	return (
