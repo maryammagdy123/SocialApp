@@ -16,3 +16,15 @@ export const RegisterUser = async (value) => {
 	return data
 
 };
+
+export const getPosts = async () => {
+	const { data } = await axios.get(
+		`https://linked-posts.routemisr.com/posts?limit=50&sort=-createdAt`,
+		{
+			headers: {
+				token: localStorage.getItem("token"),
+			},
+		}
+	);
+	return data.posts
+}
