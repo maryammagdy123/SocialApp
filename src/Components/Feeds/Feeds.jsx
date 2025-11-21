@@ -34,17 +34,12 @@ export default function Feeds() {
 
 	return (
 		<div className="min-h-screen w-full lg:w-[80%] py-8 px-3 flex flex-col items-center mt-12 lg:ml-56 mx-auto">
-
 			<h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">Home Feeds..</h1>
-
-
 			<div className="w-full   max-w-2xl space-y-6">
 				<CreatePost />
-
 				{renderPost()}
 			</div>
 		</div>
-
 	);
 }
 
