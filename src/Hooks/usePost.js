@@ -14,6 +14,10 @@ export default function usePost(fileInput, reset, setShowModal) {
 			reset();
 			setShowModal(false);
 			window.location.reload()
+			queryClient.invalidateQueries({
+				queryKey: ["posts"],
+			});
+
 		},
 		onError: () => {
 			toast.error("Failed to create post");
@@ -28,7 +32,10 @@ export default function usePost(fileInput, reset, setShowModal) {
 			fileInput.current.value = "";
 			reset();
 			window.location.reload()
-			queryClient.invalidateQueries(["posts"]);
+			queryClient.invalidateQueries({
+				queryKey: ["posts"],
+			});
+
 		},
 		onError: () => {
 			toast.error("cannot update post")
