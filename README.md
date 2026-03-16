@@ -231,23 +231,5 @@ RUN npm run build
 CMD ["npm", "run", "preview"]
 ```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♂️ Support
-
-For support, email support@socialconnect.com or join our Slack channel.
-
-## 🗺️ Roadmap
-
-- [ ] **Real-time Chat** - Direct messaging between users
-- [ ] **Stories Feature** - Temporary posts that disappear after 24 hours
-- [ ] **Live Streaming** - Real-time video broadcasting
-- [ ] **Dark Mode** - System preference detection
-- [ ] **Push Notifications** - Browser notifications for new interactions
-- [ ] **Advanced Analytics** - User engagement metrics and insights
-
----
 
 **SocialConnect** - Connecting people, one post at a time.
